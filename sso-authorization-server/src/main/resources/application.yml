@@ -1,0 +1,23 @@
+server:
+  port: 8083
+
+spring:
+  datasource:
+    username: sa
+    url: jdbc:h2:mem:testdb
+
+keycloak:
+  server:
+    contextPath: /auth
+    adminUser:
+      username: bael-admin
+      password: pass
+    realmImportFile: baeldung-realm.json
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss}[%X{traceId}/%X{spanId}] [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss}[%X{traceId}/%X{spanId}] [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: sso-auth-server.log
+
