@@ -1,0 +1,8 @@
+.idea/
+sso-auth-server.log
+sso-authorization-server/target/
+sso-client-app1.log
+sso-client-app2.log
+sso-resource-server.log
+sso-resource-server/target/
+target/
