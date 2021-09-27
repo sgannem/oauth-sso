@@ -2,7 +2,7 @@
 ##
 ### SPDX-License-Identifier: MIT-0
 
-resource "aws_ecr_repository" "oauth_sso_ecs_ecr_repo" {
+resource "aws_ecr_repository" "stepfunction_ecs_ecr_repo" {
   name                 = "${var.app_prefix}-repo"
   tags = {
     Name = "${var.app_prefix}-ecr-repo"
