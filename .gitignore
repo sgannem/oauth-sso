@@ -6,3 +6,7 @@ sso-client-app2.log
 sso-resource-server.log
 sso-resource-server/target/
 target/
+templates/.terraform.lock.hcl
+templates/.terraform/
+templates/terraform.tfstate
+templates/terraform.tfstate.backup
