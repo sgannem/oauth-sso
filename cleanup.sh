@@ -1,10 +1,10 @@
 ACCOUNT_NUMBER=
 
 #ECR_REPO_NAME="oauth-sso-app-ecs-repo"
-APP_ECR_REPO_AUTH_SERVER="sso-oauth-app-repo"
-APP_ECR_REPO_RESOURCE_SERVER="sso-oauth-app-repo"
-APP_ECR_REPO_CLIENT_APP_1="sso-oauth-app-repo"
-APP_ECR_REPO_CLIENT_APP_2="sso-oauth-app-repo"
+APP_ECR_REPO_AUTH_SERVER="sso-authorization-server-repo"
+APP_ECR_REPO_RESOURCE_SERVER="sso-resource-server-repo"
+APP_ECR_REPO_CLIENT_APP_1="sso-client-app-1-repo"
+APP_ECR_REPO_CLIENT_APP_2="sso-client-app-2-repo"
 
 aws ecr batch-delete-image --repository-name $APP_ECR_REPO_AUTH_SERVER --image-ids imageTag=latest
 aws ecr batch-delete-image --repository-name $APP_ECR_REPO_AUTH_SERVER --image-ids imageTag=untagged

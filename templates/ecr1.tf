@@ -2,16 +2,31 @@
 ##
 ### SPDX-License-Identifier: MIT-0
 
-resource "aws_ecr_repository" "oauth_sso_ecs_ecr_repo" {
-  name                 = "${var.sso-oauth}-repo"
+
+resource "aws_ecr_repository" "sso-authorization-server" {
+  name                 = "${var.app_prefix-1}-repo"
   tags = {
-    Name = "${var.sso-oauth}-ecr-repo"
+    Name = "${var.app_prefix-1}-ecr-repo"
   }
 }
 
-#resource "aws_ecr_repository" "oauth_sso_ecs_ecr_repo" {
-#  name                 = "${var.app_prefix-1}-repo"
-#  tags = {
-#    Name = "${var.app_prefix-1}-ecr-repo"
-#  }
-#}
+resource "aws_ecr_repository" "sso-resource-server" {
+  name                 = "${var.app_prefix-2}-repo"
+  tags = {
+    Name = "${var.app_prefix-2}-ecr-repo"
+  }
+}
+
+resource "aws_ecr_repository" "sso-client-app-1" {
+  name                 = "${var.app_prefix-3}-repo"
+  tags = {
+    Name = "${var.app_prefix-3}-ecr-repo"
+  }
+}
+
+resource "aws_ecr_repository" "sso-client-app-2" {
+  name                 = "${var.app_prefix-4}-repo"
+  tags = {
+    Name = "${var.app_prefix-4}-ecr-repo"
+  }
+}

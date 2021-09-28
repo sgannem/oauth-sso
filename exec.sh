@@ -1,10 +1,10 @@
 ACCOUNT_NUMBER=
 REGION=eu-west-1
 
-APP_ECR_REPO_AUTH_SERVER=sso-oauth-app-repo
-APP_ECR_REPO_RESOURCE_SERVER=sso-oauth-app-repo
-APP_ECR_REPO_CLIENT_APP_1=sso-oauth-app-repo
-APP_ECR_REPO_CLIENT_APP_2=sso-oauth-app-repo
+APP_ECR_REPO_AUTH_SERVER=sso-authorization-server-repo
+APP_ECR_REPO_RESOURCE_SERVER=sso-resource-server-repo
+APP_ECR_REPO_CLIENT_APP_1=sso-client-app-1-repo
+APP_ECR_REPO_CLIENT_APP_2=sso-client-app-2-repo
 
 APP_ECR_REPO_AUTH_SERVER_URL=$ACCOUNT_NUMBER.dkr.ecr.$REGION.amazonaws.com/$APP_ECR_REPO_AUTH_SERVER
 APP_ECR_REPO_RESOURCE_SERVER_URL=$ACCOUNT_NUMBER.dkr.ecr.$REGION.amazonaws.com/$APP_ECR_REPO_RESOURCE_SERVER
