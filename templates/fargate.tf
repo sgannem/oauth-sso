@@ -78,7 +78,7 @@ resource "aws_ecs_task_definition" "sso_auth_server_ecs_task_definition" {
     "name": "fargate-app",
     "portMappings":[
       {
-        "containerPort": 80,
+        "containerPort": 8083,
         "hostPort":80,
         "protocol": "tcp"
       }

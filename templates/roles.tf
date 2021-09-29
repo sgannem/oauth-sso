@@ -20,6 +20,90 @@ data "aws_iam_policy_document" "sso_auth_server_ecs_policy_document" {
   }
 }
 
+resource "aws_iam_role_policy" "sso_auth_server_ecs_policy" {
+  name = "${local.iam_policy_name}"
+  role = "${aws_iam_role.stepfunction_ecs_role.id}"
+  # Policy type: Inline policy
+  # StepFunctionsGetEventsForECSTaskRule is AWS Managed Rule
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:GetLogEvents",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetRole",
+                "iam:PassRole"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowPushPull",
+            "Resource": [
+                "${aws_ecr_repository.sso-authorization-server.arn}"
+            ],
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:PutImage",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload"
+            ]
+        },
+        {
+            "Action": [
+                "sns:Publish"
+            ],
+            "Resource": [
+                "${aws_sns_topic.sso_auth_server_ecs_sns.arn}"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "ecs:RunTask"
+            ],
+            "Resource": [
+                "${aws_ecs_task_definition.sso_auth_server_ecs_task_definition.arn}"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "ecs:StopTask",
+                "ecs:DescribeTasks"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "events:PutTargets",
+                "events:PutRule",
+                "events:DescribeRule"
+            ],
+            "Resource": [
+                "arn:aws:events:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:rule/StepFunctionsGetEventsForECSTaskRule"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}
+EOF
+}
+
 ###
 # ECS Tasks - role and executution roles
 ###
